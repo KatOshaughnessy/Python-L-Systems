@@ -1,0 +1,84 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Tree_Generator</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Tree_Generator</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/s5116938/maya/2018/scripts/Tree_Generator.py">/home/s5116938/maya/2018/scripts/Tree_Generator.py</a></font></td></tr></table>
+    <p><tt>L-System&nbsp;Generator<br>
+&nbsp;<br>
+inspired&nbsp;by&nbsp;Janne&nbsp;Kaasalainen's&nbsp;work&nbsp;from&nbsp;<a href="http://blog.studioe18.com/69/visualizing-l-systems/">http://blog.studioe18.com/69/visualizing-l-systems/</a><br>
+&nbsp;<br>
+This&nbsp;program&nbsp;allows&nbsp;you&nbsp;to&nbsp;generate&nbsp;trees&nbsp;by&nbsp;adjusting&nbsp;the&nbsp;values&nbsp;on&nbsp;the&nbsp;UI&nbsp;which&nbsp;appears&nbsp;when&nbsp;the&nbsp;program&nbsp;run</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-actionProc"><strong>actionProc</strong></a>(*pArgs)</dt><dd><tt>Starting&nbsp;action</tt></dd></dl>
+ <dl><dt><a name="-addRule"><strong>addRule</strong></a>(ruleDict, replaceStr, newStr)</dt><dd><tt>add&nbsp;a&nbsp;new&nbsp;rule&nbsp;to&nbsp;the&nbsp;ruleDict<br>
+&nbsp;<br>
+ruleDict&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;dictionary&nbsp;holding&nbsp;the&nbsp;rules<br>
+replaceStr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;old&nbsp;character&nbsp;to&nbsp;be&nbsp;replaced<br>
+newStr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;new&nbsp;string&nbsp;replacing&nbsp;the&nbsp;old&nbsp;one</tt></dd></dl>
+ <dl><dt><a name="-buildTree"><strong>buildTree</strong></a>(piterations, pstepLength, protateAngle, pmaterials, pcolourTree, pcolourLeaf, pmaterialsleaf, ptype, *pargs)</dt><dd><tt>add&nbsp;the&nbsp;rules,&nbsp;initialise&nbsp;the&nbsp;control&nbsp;parameters,&nbsp;such&nbsp;as&nbsp;<br>
+iteration&nbsp;numbers,&nbsp;branch&nbsp;rotation&nbsp;angle,&nbsp;step&nbsp;size&nbsp;of&nbsp;growing,&nbsp;materials,&nbsp;colour&nbsp;and&nbsp;type</tt></dd></dl>
+ <dl><dt><a name="-calculateVector"><strong>calculateVector</strong></a>(length, rotationx, rotationz)</dt><dd><tt>calculate&nbsp;the&nbsp;vector&nbsp;from&nbsp;the&nbsp;start&nbsp;point&nbsp;to&nbsp;the&nbsp;end&nbsp;point&nbsp;for&nbsp;each&nbsp;branch<br>
+&nbsp;<br>
+length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;step&nbsp;size&nbsp;for&nbsp;growing<br>
+rotationX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;rotation&nbsp;angle&nbsp;for&nbsp;branching<br>
+rotationZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;rotation&nbsp;angle&nbsp;for&nbsp;branching<br>
+return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;return&nbsp;the&nbsp;vector&nbsp;from&nbsp;start&nbsp;point&nbsp;to&nbsp;end&nbsp;point</tt></dd></dl>
+ <dl><dt><a name="-cancelProc"><strong>cancelProc</strong></a>(*pArgs)</dt><dd><tt>creating&nbsp;the&nbsp;cancel&nbsp;callback&nbsp;function</tt></dd></dl>
+ <dl><dt><a name="-createBranch"><strong>createBranch</strong></a>(startPoint, length, anglex, anglez)</dt><dd><tt>create&nbsp;a&nbsp;cylinder&nbsp;for&nbsp;each&nbsp;branch<br>
+&nbsp;<br>
+startPoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;startPoint,&nbsp;base&nbsp;point&nbsp;for&nbsp;the&nbsp;new&nbsp;cylinder<br>
+length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;step&nbsp;size&nbsp;for&nbsp;growing<br>
+angleX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;rotation&nbsp;angle&nbsp;for&nbsp;branching,&nbsp;used&nbsp;for&nbsp;calculating&nbsp;the&nbsp;axis&nbsp;of&nbsp;the&nbsp;cylinder<br>
+angleZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;rotation&nbsp;angle&nbsp;for&nbsp;branching,&nbsp;used&nbsp;for&nbsp;calculating&nbsp;the&nbsp;axis&nbsp;of&nbsp;the&nbsp;cylinder<br>
+return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;return&nbsp;the&nbsp;created&nbsp;object</tt></dd></dl>
+ <dl><dt><a name="-createModel"><strong>createModel</strong></a>(actionString, length, turn)</dt><dd><tt>create&nbsp;the&nbsp;3D&nbsp;model&nbsp;based&nbsp;on&nbsp;the&nbsp;actionString,&nbsp;following&nbsp;the&nbsp;characters&nbsp;in&nbsp;the&nbsp;string,&nbsp;<br>
+one&nbsp;by&nbsp;one,&nbsp;grow&nbsp;the&nbsp;branches,&nbsp;and&nbsp;finally&nbsp;group&nbsp;all&nbsp;branches&nbsp;together&nbsp;into&nbsp;one&nbsp;group<br>
+&nbsp;<br>
+&nbsp;&nbsp;actionString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;instructions&nbsp;on&nbsp;how&nbsp;to&nbsp;construct&nbsp;the&nbsp;model<br>
+&nbsp;&nbsp;length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;step&nbsp;size&nbsp;for&nbsp;growing<br>
+&nbsp;&nbsp;turn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;rotation&nbsp;angle&nbsp;for&nbsp;branching<br>
+&nbsp;&nbsp;return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;return&nbsp;the&nbsp;group&nbsp;of&nbsp;all&nbsp;the&nbsp;branches</tt></dd></dl>
+ <dl><dt><a name="-createUI"><strong>createUI</strong></a>(pWindowTitle, pApplyCallback)</dt><dd><tt>Creating&nbsp;the&nbsp;UserInterface<br>
+&nbsp;<br>
+windowTitle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;title&nbsp;of&nbsp;the&nbsp;window<br>
+ApplyCallback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;function&nbsp;called&nbsp;when&nbsp;button&nbsp;is&nbsp;pressed,&nbsp;therefore&nbsp;inclusion&nbsp;of&nbsp;functiontools.partial</tt></dd></dl>
+ <dl><dt><a name="-iterate"><strong>iterate</strong></a>(baseString, numIterations, ruleDict)</dt><dd><tt>following&nbsp;the&nbsp;rules,&nbsp;replace&nbsp;old&nbsp;characters&nbsp;with&nbsp;new&nbsp;ones<br>
+&nbsp;<br>
+baseString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;start&nbsp;string<br>
+numIterations&nbsp;&nbsp;&nbsp;:&nbsp;how&nbsp;many&nbsp;times&nbsp;the&nbsp;rules&nbsp;will&nbsp;be&nbsp;used<br>
+ruleDict&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;dictionary&nbsp;holding&nbsp;the&nbsp;rules<br>
+return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;return&nbsp;the&nbsp;final&nbsp;expanded&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-setMaterial"><strong>setMaterial</strong></a>(objName, materialType, colour, leafmodelGroup, colourleaf, materialTypeLeaf)</dt><dd><tt>Assigns&nbsp;a&nbsp;material&nbsp;to&nbsp;the&nbsp;object&nbsp;'objectName'<br>
+&nbsp;<br>
+objectName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;3D&nbsp;object&nbsp;in&nbsp;the&nbsp;scene&nbsp;which&nbsp;is&nbsp;the&nbsp;branch<br>
+materialType&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;is&nbsp;string&nbsp;that&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;sufrace&nbsp;shader,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;can&nbsp;be&nbsp;any&nbsp;of&nbsp;Maya's&nbsp;valid&nbsp;surface&nbsp;shaders&nbsp;such&nbsp;as:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lambert,&nbsp;blin,&nbsp;phong,&nbsp;etc.&nbsp;<br>
+colour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;is&nbsp;a&nbsp;3-tuple&nbsp;of&nbsp;(R,G,B)&nbsp;and&nbsp;(H,S,V)&nbsp;values&nbsp;within&nbsp;the&nbsp;range&nbsp;[0,1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;specify&nbsp;the&nbsp;colour&nbsp;of&nbsp;the&nbsp;material<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colour=(0.024,&nbsp;0.369,&nbsp;0.024)):<br>
+leafmodelGroup&nbsp;&nbsp;:&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;3D&nbsp;object&nbsp;in&nbsp;the&nbsp;scene&nbsp;which&nbsp;is&nbsp;the&nbsp;leaf<br>
+colourleaf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;is&nbsp;a&nbsp;3-tuple&nbsp;of&nbsp;(R,G,B)&nbsp;and&nbsp;(H,S,V)&nbsp;values&nbsp;within&nbsp;the&nbsp;range&nbsp;[0,1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;specify&nbsp;the&nbsp;colour&nbsp;of&nbsp;the&nbsp;material<br>
+materialTypeLeaf:&nbsp;is&nbsp;string&nbsp;that&nbsp;specifies&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;sufrace&nbsp;shader,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;can&nbsp;be&nbsp;any&nbsp;of&nbsp;Maya's&nbsp;valid&nbsp;surface&nbsp;shaders&nbsp;such&nbsp;as:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lambert,&nbsp;blin,&nbsp;phong,&nbsp;etc.&nbsp;<br>
+On&nbsp;Exit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;'objName'&nbsp;has&nbsp;been&nbsp;assigned&nbsp;a&nbsp;new&nbsp;material&nbsp;according&nbsp;to&nbsp;the&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;values&nbsp;of&nbsp;the&nbsp;procedure,&nbsp;and&nbsp;a&nbsp;tuple&nbsp;(of&nbsp;two&nbsp;strings)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;contains&nbsp;the&nbsp;new&nbsp;shading&nbsp;group&nbsp;name,&nbsp;and&nbsp;the&nbsp;new&nbsp;shader<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;is&nbsp;returned&nbsp;to&nbsp;the&nbsp;caller</tt></dd></dl>
+</td></tr></table>
+</body></html>
